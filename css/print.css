@@ -1,0 +1,264 @@
+@page {
+ size:21cm 26cm;
+ margin: 20%;
+/*   margin: 1mm 1mm 1mm 1mm; */
+ position:relative;
+
+}
+
+/* @page :left{
+  margin:0mm 15mm 0mm 0mm;
+}
+@page :right{
+  margin: 0mm 0mm 0mm 15mm;
+} */
+
+
+body{
+  width:100%;
+  height:100%;
+  background-color: var(--backColor);
+
+  /* Couleurs */
+  --mainColor : rgb(36, 36, 36);
+  --mainColor2 : rgb(13, 13, 13);
+  --mainColor3 : rgb(94, 94, 94);
+  --mainColor4 : rgb(103, 103, 103);
+  --suppColor : rgb(120, 118, 117);
+  --suppColor2 : rgb(134, 134, 134);
+  --backColor : rgb(255, 255, 255);
+  --backColor2 : rgba(255, 255, 255, 0.85);
+  --backColor3 : rgba(255, 255, 255, 0.96);
+
+  /* Polices */
+  --titleFont : 'Autopia regular', serifs;
+  --textFont : 'Roboto', sans-serif;
+  --dotFont : 'Codystar', cursive;
+  }
+
+
+.pagebreak {
+  page-break-before: always;
+}
+
+
+
+
+  /* NAV BAR ----------------------*/
+  /* principale */
+  .main nav{
+      display:none !important;
+  }
+
+  .main .contenu{
+      width: 16cm;
+      left: 7cm;
+      top: 5cm;
+      bottom: 3cm;
+      page-break-inside: auto;
+      orphans: 2;
+    }
+
+/* Imprimer tout le texte de la section et pas seulement la sous-partie active*/
+    body .main .contenu .inactive{
+    display: block;
+    }
+    body .main .contenu .inactive.active{
+    display: block;
+    }
+
+
+  /* all images slideshow */
+  .main .contenu .images::before{
+    position: relative;
+    display: inline-block;
+    content: "Consultez les images sur le site millefeuillesdebabel.ensci.com en vous reférant, dans la rubrique du Belvédère, au numéro de figure corespondant. Les mots signalés avec une asterixe renvoient au Glossaire, imprimable en ligne également. Les notes sont disponibles à la fin du chapitre.";
+    font-family: var(--titleFont);
+    font-style: italic;
+    letter-spacing: 0.05em;
+    color: var(--mainColor3);
+  }
+
+  .main .contenu .images .slideshow-container{
+      display: none;
+    }
+
+  .main .contenu .images .slideshow-container .dot{
+      display: none;
+    }
+
+  .main .contenu .legende-compt, .main .contenu .total{
+      display: none;
+      }
+
+/* Ne pas imprimer le popup
+.mfp-wrap {
+  display:none !important;
+
+
+  #index-print{
+    display:block;
+    width: 100%;
+  }
+
+  .index-part{
+    display: inline-block;
+    vertical-align: top;
+    float:none;
+    margin-top: 0.5cm;
+  }
+
+  #index-print .index-part{
+    width:7cm;
+    height:100%;
+    font-size:10px;
+  }
+
+  #index-print .part-img{
+    width:80%;
+    height:100%;
+  }
+
+  #index-print h1{
+    font-size:17px;
+    letter-spacing:4px;
+    text-decoration: none;
+    font-family:'autopia';
+    text-align:left;
+    border:none;
+    margin:0 0 0 0;
+    padding:0px;
+    display:block;
+    line-height:100%;
+  }
+    */
+
+    .couverture, .couverture2{
+      page-break-after: always; /*pour une raison inconnue ca marche pas bien */
+    }
+
+    #background-video{
+      display: none;
+    }
+
+    .mains .contenu h2{
+      page-break-before: always;
+      page-break-inside: avoid;
+    }
+
+    .main .contenu h3{
+      position: relative;
+      display: block;
+      page-break-inside: avoid;
+      page-break-after: avoid;
+    }
+
+    h3::before {
+      counter-increment: cSection; /* On incrémente le compteur de parties */
+      content: counter(cSection) " / " counter(cTotal); /* On affiche le compteur de parties + le nb total de parties*/
+    }
+
+
+    .main .contenu h3::after {
+      content: "";
+      display: block;
+      page-break-inside: avoid;
+      height: 3em;
+      margin-bottom: -3em;
+    }
+
+    .main .contenu h4{
+      position: relative;
+      display: block;
+      page-break-inside: avoid;
+      page-break-after: avoid;
+    }
+
+    .main .contenu h4::after {
+      content: "";
+      display: block;
+      page-break-inside: avoid;
+      height: 2em;
+      margin-bottom: -2em;
+    }
+
+    .main .contenu .paragraphe h4{
+      position: relative;
+      page-break-inside: avoid;
+      page-break-after: avoid;
+    }
+
+    .main .contenu h5{
+      position: relative;
+      page-break-inside: avoid;
+      page-break-after: avoid;
+    }
+
+    .main .contenu .paragraphe{
+      position: relative;
+      display: block;
+      page-break-inside: auto;
+    }
+
+    .main .contenu .paragraphe p{
+      position: relative;
+      display: block;
+      page-break-inside: auto;
+      orphans: 3;
+      widows: 3;
+    }
+
+    .main .contenu .paragraphe q, .main .contenu .paragraphe em{
+      page-break-inside: auto;
+    }
+
+    .main .contenu .paragraphe .illustration{
+      page-break-inside: avoid;
+    }
+
+    /*lien vers les illustration en noir*/
+    #ILL-belvedere{ content: url('../img/Ill-belvedere-black.png')}
+    #ILL-plot{ content: url('../img/Ill-plot-black.png')}
+    #BEL-numbers{ content: url('../img/BEL-numbers-black.png')}
+    #loop{ display : none}
+    #ILL-map{ content: url('../img/ILL-map-black.png')}
+
+
+  /* square pour les images----------------------------- */
+    .square::after{
+      content: "[ " attr(data-title) " ]";
+      white-space: nowrap;
+    }
+
+  /* afficher le texte caché des fiches*/
+
+  .fiche p.texte-fiche{
+      display: block;
+  }
+
+
+/* footer ndbp */
+  .main .contenu .bas-page{
+      page-break-inside: auto;
+      display: block;
+  }
+
+  .main .contenu .bas-page ol{
+      page-break-inside: auto;
+      display: block;
+  }
+
+  .main .contenu .bas-page ol li{
+        page-break-inside: avoid;
+        display: block;
+  }
+
+  .main .contenu .bas-page ol li p{
+        page-break-inside: avoid;
+        display: block;
+  }
+
+  .trait-ndbp-sgstn{
+        border-bottom: solid 1px var(--mainColor);
+      display: block;
+    }

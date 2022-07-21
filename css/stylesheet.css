@@ -1,0 +1,1688 @@
+/* 0 - VARIABLES GENERALES */
+:root{
+    scroll-behavior: smooth;
+}
+body{
+margin: 0;
+padding: 0;
+background-color: var(--backColor);
+width: 100vw;
+height: 100vh;
+
+
+/* Couleurs */
+--mainColor : rgb(179, 198, 184);
+--mainColor2 : rgb(255, 255, 255);
+--mainColor3 : rgb(154, 189, 173);
+--mainColor4 : rgb(93, 136, 118);
+--suppColor : rgb(246, 87, 18);
+--suppColor2 : rgb(247, 174, 142);
+--backColor : rgb(0, 32, 19);
+--backColor2 : rgba(0, 32, 19, 0.85);
+--backColor3 : rgba(0, 32, 19, 0.96);
+
+/* Polices */
+--titleFont : 'Autopia regular', serifs;
+--textFont : 'Roboto', sans-serif;
+--dotFont : 'Codystar', sans-serif;
+
+}
+
+
+/* Couleurs SÃ©lections */
+*::selection{
+    background-color: var(--suppColor2);
+    color: var(--mainColor);
+}
+/* Scrollbar */
+/**::-webkit-scrollbar {
+    width: 1rem;
+    background-color: rgba(41, 41, 41, 0.85);
+  }
+*::-webkit-scrollbar-thumb {
+      background: var(--mainColor);
+  }
+/* scrollbar styling standard version */
+/**{
+    scrollbar-color: rgb(231, 242, 228) rgba(34, 42, 33, 0.85);
+    scrollbar-width: thin;*/
+}
+/* 1 - CARTO POPUP CARTOGRAPHIE DE LA RECHERCHE -----------------------------------------------------------------------------------------*/
+
+/*PARATEXTES*/
+a{
+  text-decoration: none;
+}
+
+.white-popup .fanion-container .fanion a, .white-popup .paratexte a{
+  text-decoration: none;
+}
+
+  .white-popup .paratexte h1{
+    margin:5px;
+    padding:5px;
+    display: block;
+
+    font-size:0.9em;
+    letter-spacing:0.1em;
+    font-family: var(--titleFont);
+    font-weight: lighter;
+    color: var(--backColor2);
+    border:none;
+    line-height: 110%;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .white-popup .paratexte:hover a{
+    text-decoration: none;
+    transition: 0.2s;
+    font-weight: bolder;
+    font-size:1em;
+  }
+
+  .white-popup .paratexte:hover h1{
+    text-decoration: none;
+    transition: 0.2s;
+    font-weight: bolder;
+    font-size:1em;
+  }
+  .white-popup .fanion-container .fanion a:visited h1, .white-popup .paratexte a:visited h1{
+    text-decoration: none;
+    color: var(--backColor);
+  }
+
+  #topleft{
+    position: absolute;
+    top: 5%;
+  }
+  #topright{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    text-align: right;
+  }
+ #bottomleft{
+    position: absolute;
+    bottom: 5%;
+    text-align: left;
+  }
+  #bottomright{
+    position: absolute;
+    bottom:6%;
+    right: 5%;
+    text-align: right;
+  }
+
+.white-popup .fanion-container{
+  position: relative;
+  /*vertical-align: middle;*/
+  align: center;
+  width:90vh;/*c'est là que se joue la taille de la zone des fanions qui doit être calquée sur celle de l'image de fond en largeur (pour la hauteur, voir dans les variables @mediascreen)*/
+  height: 100vh;
+  margin: auto auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* FANION DE LOCALISATION SUR LA CARTE*/
+
+.white-popup .fanion-container .container{
+  /*si le bg est ici alos il empèche que le clic sur toute la zone ferme le popup
+  /*background: url("../img/carto-recherche2.png") no-repeat;
+  background-size: 100% auto;
+  background-position: center;*/
+  width: 100%;
+  padding-bottom: 100%;/*le paddingpermet de garder un ratio carré*/
+  position: absolute;
+  text-decoration: none;
+  /*vertical-align: middle;*/
+  margin: auto auto;
+
+}
+
+  .white-popup .fanion-container .fanion{
+    text-align:left;
+    border-left: 1px solid;
+    border-color: var(--suppColor);
+    margin:0;
+    padding: 0px 0px 10px 3px;
+    display:flex;
+    text-decoration: none;
+    pointer-events: visible;
+  }
+
+  .white-popup .fanion-container .fanion h1{
+    font-size:0.7em;
+    letter-spacing:01px;
+    color: var(--suppColor);
+    text-decoration: none;
+    font-family: var(--titleFont);
+    font-weight: bolder;
+    text-align:left;
+
+    margin: 0;
+    padding:2px;
+    display:block;
+    line-height:110%;
+
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 10;
+  }
+
+  .white-popup .fanion-container .fanion h2{
+    font-size:0.6em;
+    color: var(--suppColor);
+    text-decoration: none;
+    font-family: var(--titleFont);
+    font-weight: bold;
+    text-align:left;
+
+    margin: 0;
+    padding:2px;
+    display:block;
+    line-height:110%;
+
+    background-color: rgba(255, 255, 255, 0.85);
+    z-index: 10;
+  }
+
+  .white-popup .fanion-container .fanion:hover h1{
+    font-size:0.8em;
+    letter-spacing:01px;
+
+    margin: 0;
+    padding:3px;
+    display:block;
+    line-height:110%;
+
+
+    background-color: white;
+    z-index: 12;
+    transition: all 0.2s;
+  }
+
+  .white-popup .fanion-container .fanion:hover h2{
+    font-size:0.7em;
+    letter-spacing:01px;
+
+    margin: 0;
+    padding:3px;
+    display:block;
+    line-height:110%;
+
+
+    background-color: white;
+    z-index: 12;
+    transition: all 0.2s;
+  }
+
+/*COORDONNÉES DE LA DIV*/
+  .white-popup .fanion-container .bel{
+    text-decoration: none;
+    display: block;
+    position: absolute;
+    bottom: 48%;
+    left: 42%;
+
+    pointer-events: visible;
+  }
+  .white-popup .fanion-container .pre{
+    text-decoration: none;
+    display: block;
+    position: absolute;
+    bottom: 55%;
+    left: 48%;
+
+    pointer-events: visible;
+  }
+  .white-popup .fanion-container .post{
+    text-decoration: none;
+    display: block;
+    position: absolute;
+    bottom: 42%;
+    left: 46%;
+
+    pointer-events: visible;
+  }
+
+  .white-popup .fanion-container .cal{
+    text-decoration: none;
+    display:flex;
+    position: absolute;
+    bottom: 57%;
+    left: 12%;
+  }
+  .white-popup .fanion-container .res{
+    text-decoration: none;
+    display:flex;
+    position: absolute;
+    bottom: 22%;
+    left: 47%;
+  }
+  .white-popup .fanion-container .coll{
+    text-decoration: none;
+    display:flex;
+    position: absolute;
+    bottom: 50%;
+    left: 83%;
+  }
+  .white-popup .fanion-container .pano{
+    text-decoration: none;
+    display:flex;
+    position: absolute;
+    bottom: 70%;
+    left: 47%;
+  }
+  .white-popup .fanion-container .corpus{
+    text-decoration: none;
+    display:flex;
+    position: absolute;
+    bottom: 26%;
+    left: 73%;
+
+  }
+  .white-popup .fanion-container .page{
+    text-decoration: none;
+    display:flex;
+    position: absolute;
+    bottom: 27%;
+    left: 18%;
+  }
+
+/* si besoin de détails*/
+  .white-popup p{
+    font-size:14px;
+    display:flex;
+    float:none;
+    padding:0px;
+    line-height:100%;
+  }
+
+
+/*===============================carto-bouton===============================================*/
+
+.carto{
+  background:url('../img/dotted-gradient2.png') no-repeat;
+  background-repeat: repeat-y;
+  background-size: cover;
+
+  color: var(--suppColor);
+  position: fixed;
+  height: 100%;
+  width: 30px;
+  text-align:center;
+  border:none;
+  z-index:300;
+  top:0;
+  left:-2px;
+  opacity: 0.6;
+}
+
+.carto:hover{
+  left:0;
+  opacity: 1;
+  transition: all 0.2s;
+}
+
+.carto p{
+  font-family: var(--dotFont);
+  font-weight: bold;
+  color: var(--backColor);
+
+  font-size:1.3em;
+  letter-spacing: 0.05em;
+  text-align:center;
+  top:50%;
+  position:fixed;
+  margin-left:-185px;
+  -ms-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  text-transform: uppercase;
+  white-space: nowrap;
+  z-index:209;
+
+}
+
+/* 1B - COUVERTURE --------------------------------------------------------------------------------------------*/
+
+.couverture{
+  display: inline-block;
+  position: relative;
+  top: 0px;
+  width: 100vw;
+  height: 99vh;
+  z-index: 90;
+  pointer-events: none;
+
+  align-content: center;
+
+  border-bottom: dotted;
+  border-width: 1px;
+  border-color: var(--mainColor3);
+  /*background: url("../img/map-circle-green.mp4") no-repeat;
+  background-size: contain;
+  background-position: center;*/
+  background-color: var(--backColor);
+}
+
+#background-video {
+  position: absolute;
+  height:99vh;
+  left: 50%;
+  transform: translateX(-50%);
+
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.2;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#background-video video{
+}
+
+.couverture2{
+  display: inline-block;
+  position: relative;
+  top: 0px;
+  width: 100vw;
+  z-index: 90;
+  pointer-events: cursor;
+
+  align-content: center;
+
+  border-bottom: dotted;
+  border-width: 1px;
+  border-color: var(--mainColor3);
+  /*background: url("../img/map-circle-green.mp4") no-repeat;
+  background-size: contain;
+  background-position: center;*/
+  background-color: var(--backColor2);
+  scroll-behavior: smooth;
+}
+
+.couverture2 .paragraphe{
+  display: inline-block;
+  margin: 0;
+  padding: 50px 50px 70px 40vw;
+  pointer-events: none;
+}
+
+.couverture h1.main-title{
+  display: inline-block;
+  margin-top: 20vh;
+  margin-bottom: 0px;
+  width: 100vw;
+  margin-left: 30%;
+
+  text-align: left;
+  font-family: var(--dotFont);
+  font-weight: 400;
+  font-size: 3em;
+  letter-spacing: 0.1em;
+  color: var(--mainColor);
+}
+.couverture h2.subtitle{
+  display: inline-block;
+  margin-left: 33%;
+  margin-top: 0.5em;
+
+  text-align: left;
+  font-family: var(--titleFont);
+  font-weight: normal;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  font-size: 1.3em;
+  line-height: 140%;
+  color: var(--mainColor3);
+}
+
+.couverture p.author{
+  display: inline-block;
+  width: 100vw;
+  margin-top: 20vh;
+
+  text-align: center;
+  font-family: var(--titleFont);
+  letter-spacing: 0.02em;
+  font-weight: lighter;
+  font-size: 1em;
+  color: var(--mainColor4);
+}
+
+.couverture .fleche{
+  pointer-events: all;
+  display: inline-block;
+  position: absolute;
+  bottom: 5vh;
+  width: 100vw;
+  margin-top: 1vh;
+  height: 20px;
+  left: 0;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  z-index: 99;
+  background-color: var(--backColor5);
+  cursor-
+}
+
+.couverture .fleche:hover{
+  height: 17px;
+  transition: all 0.2s;
+}
+
+.couverture .fleche a{
+cursor: pointer;
+}
+
+
+/* 2 - CONTENU DU MEMOIRE ---------------------------------------------------------------------------------------- */
+
+    /* MISE EN PAGE DU MEMOIRE -----------------------------------------------------------------------*/
+        .main{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: start;
+            justify-content: space-between;
+
+
+        }
+
+        /* NAV BAR ----------------------*/
+        /* principale */
+        .main{
+          z-index: 20;
+        }
+        .main nav{
+            width: 27vw;
+            display: flex;
+            align-items: start;
+            margin: 0;
+            z-index: 20;
+        }
+        .main nav .menu{
+            position:fixed;
+            left: 0;
+            top: 0%;
+            height: 300px;
+            margin-top: 0px;
+            margin-left: 20px;
+            padding: 0;
+            list-style: none;
+            z-index: 20;
+
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: start;
+
+            max-width: 27%;
+        }
+
+        .main nav .menu .picto{
+            align-content: center;
+            margin-left: 30px;
+
+
+        }
+
+        .main nav .menu .picto img{
+          margin: 20px 20px 20px 20px;
+          align-content: center;
+          max-width: 10em;
+          max-height: 30vh;
+
+        }
+
+        .main nav .menu .picto[data-title]:hover::before{
+            content: attr(data-title);
+            z-index: 8;
+            display: inline-block;
+            position: absolute;
+
+            margin-top: 25%;
+            margin-left: 100%;
+            padding: 1px 8px;
+
+            background: var(--backColor2);
+            color: var(--mainColor);
+            font-size: 1.2em;
+            font-family: var(--dotFont);
+            white-space: pre-line;
+        }
+
+
+        .main nav .menu li{
+            margin: 8px 0px 0px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+        .main nav .menu a{
+            padding: 0px 8px 0px 8px;
+            cursor: pointer;
+
+            color: var(--mainColor3);
+            font-family: var(--titleFont);
+            font-size: 0.9em;
+            font-weight: 400;
+            text-decoration: none;
+
+            transition: all 0.3s ease-in-out;
+        }
+        .main nav .menu a:hover{
+            /* border-color: var(--suppColor);  */
+            padding-left: 10px;
+            color: var(--mainColor2);
+
+        }
+        .main nav .menu a:active{
+            scale: 95% 100%;
+        }
+        .main nav .menu .active a{
+            border-color: var(--suppColor2);
+            color: var(--mainColor2);
+            /* box-shadow: -8px 0px var(--suppColor2); */
+        }
+        /* secondaire */
+        .main nav .menu .sous-menu.sm-inactive{
+            display:none;
+        }
+        .main nav .menu .sous-menu.sm-active{
+            display: inline-block;
+        }
+        .main nav .menu li .sous-menu{
+            padding-left: 0px;
+        }
+        .main nav .menu li .sous-menu a{
+            padding-left: 8px;
+            list-style: none;
+            cursor: pointer;
+
+            font-family: var(--titleFont);
+            color: var(--mainColor3);
+            font-size: 0.8em;
+
+            border-left: dotted 1px;
+            border-color: var(--mainColor);
+            transition: all 0.3s;
+        }
+        .main nav .menu li .sous-menu a:hover{
+            color: var(--suppColor2);
+            padding-left: 10px;
+        }
+        .main nav .menu li .sous-menu a:active{
+            scale: 97% 100%;
+            border-color: var(--suppColor2);
+        }
+        .main nav .menu li .sous-menu a .supp-color{
+            color: var(--suppColor2);
+        }
+        /* animation d'apparition du texte*/
+        body .main .contenu .inactive{
+        display: none;
+        }
+        body .main .contenu .inactive.active{
+        display: block;
+        }
+
+        /* boutton Imprimer */
+
+        .main nav .menu .imprimer a{
+          margin: 8px 0px 0px 40px;
+          display: flex;
+          flex-direction: column;
+
+            text-decoration: none;
+            color: var(--mainColor4);
+            font-size: 0.8em;
+            font-family: var(--titleFont);
+            line-height: 120%;
+        }
+
+        .main nav .menu .imprimer:hover a{
+          color: var(--suppColor);
+          /*border-bottom: dotted;
+          border-color: var(--suppColor);
+          border-width: 1px;*/
+          transition: all 0.3s;
+        }
+
+        .main nav .menu .imprimer:hover::before{
+            content: "Pour imprimer cette section, vous pouvez directement lancer l'impression depuis votre navigateur (ctl+P), \A ou bien télécharger le fichier pdf lié.";
+            z-index: 30;
+            display: block;
+            position: fixed;
+
+            margin-top: 3.5em;
+            margin-left: 3em;
+            padding: 8px 8px;
+
+            border-radius: 2px;
+            border-style: dotted;
+            border-width: 1px;
+            background: var(--backColor2);
+            color: var(--mainColor);
+            font-size: 0.9em;
+            font-family: var(--titleFont);
+            white-space: pre-wrap;
+        }
+
+        /* GENERAL ---------------------------------------------------------------*/
+        /* titres, textes, images et liens */
+
+
+        .main .contenu{
+            width: 50vw;
+            position: relative;
+            right: 7vw;
+
+        }
+
+        .main .contenu .sans{
+          display: none;
+        }
+
+
+        /* all images slideshow */
+        .main .contenu .images .slideshow-container{
+          width: 50vw;
+          position: relative;
+          margin-top: 55px;
+
+        }
+
+        /* Hide the images by default */
+        .main .contenu .images .slideshow-container .mySlides {
+          display: none;
+          height: 50vh;
+          text-align: center;
+        }
+
+        .main .contenu .images .slideshow-container .mySlides img{
+          max-width: 100%;
+        }
+        /* Next & previous buttons */
+        .main .contenu .images .prev, .next {
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          width: auto;
+          margin-top: -22px;
+          padding: 16px;
+          color: var(--mainColor4);
+          font-size: 18px;
+          transition: 0.3s ease;
+          border-radius: 0 3px 3px 0;
+          user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .main .contenu .images .next {
+          right: 0;
+          border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .main .contenu .images .prev:hover, .next:hover {
+          color: var(--suppColor);
+          background-color: var(--backColor3);
+        }
+
+        /* Number text (1/3 etc) */
+        .main .contenu .images .slideshow-container .numbertext {
+          color: var(--mainColor2);
+          font-size: 0.8em;
+          font-family: var(--titleFont);
+          background-color: var(--backColor2);
+
+          padding: 8px 12px;
+          position: absolute;
+          bottom: -10px;
+          right: 0.5em;
+          text-align: right;
+          width:40px;
+        }
+
+        /* Caption text */
+        .main .contenu .images .slideshow-container .text {
+          color: var(--mainColor3);
+          font-size: 0.8em;
+          font-family: var(--textFont);
+          font-weight: lighter;
+          font-style: italic;
+          background-color: var(--backColor2);
+
+          margin-top: 10px;
+          padding: 8px 12px;
+          position: absolute;
+          text-align: right;
+          margin-left:10%;
+          max-height: 55px;
+          overflow-x: scroll;
+        }
+
+
+
+        .main .contenu .images .active{
+          background-color: var(--mainColor2);
+        }
+
+        /* Fading animation */
+        .main .contenu .images .fade {
+          animation-name: fade;
+          animation-duration: 1.5s;
+        }
+        .main .contenu .images @keyframes fade {
+          from {opacity: .4}
+          to {opacity: 1}
+        }
+
+/* compteur global de sections*/
+
+        .main .contenu .legende-compt{
+            position: relative;
+            display: inline-block;
+            font-family: var(--titleFont);
+            font-weight: lighter;
+            font-size: 1.2em;
+            color: var(--mainColor3);
+
+            margin-left: -5vw;
+            margin-right: 5vw;
+            margin-top: 35px;
+            text-align: left;
+            white-space: pre-wrap;
+            }
+
+            .main .contenu .total{
+              position: sticky;
+              display: inline-block;
+              z-index: 20;
+              top: 0px;
+              padding: 30px 0px 10px;
+
+              margin-left: -5vw;
+              margin-right: 5vw;
+              text-align: left;
+
+
+              font-family: var(--titleFont);
+              font-weight: lighter;
+              font-size: 1.3em;
+              color: var(--mainColor4);
+              background-color: var(--backColor2);
+              counter-reset: cTotal var(--Total);
+                }
+
+
+
+/* contenu */
+        .main .contenu h1.chapitre{
+          position: relative;
+          margin-top: 30px;
+            padding-top: 30px;
+            padding-bottom: 0px;
+            margin-bottom: -40px;
+            margin-left: -5vw;
+            text-align: left;
+            font-family: var(--dotFont);
+            font-weight: lighter;
+            letter-spacing: 0.08em;
+            color: var(--mainColor2);
+            font-size: 2.8em;
+            line-height: 110%;
+        }
+
+        .main .contenu h2{
+          counter-reset: cIntro cSection cTotal var(--Total);/* compteur notes de bas de page */ /* compteur nb de paragraphes qui se reset à chanque grande parties*/
+
+          padding-top: 60px;
+          padding-bottom: 0px;
+          margin-bottom: 30px;
+            text-align: left;
+            font-family: var(--titleFont);
+            font-weight: lighter;
+            font-style: italic;
+            color: var(--mainColor);
+            font-size: 2.3em;
+            line-height: 110%;
+        }
+
+        .main .contenu h2.no-topmarg{
+          padding-top: 0px;
+          padding-bottom: 0px;
+          margin-bottom: 30px;
+        }
+
+        .main .contenu h2.no-reset{
+          counter-reset: cIntro cSection var(--LastS);
+        }
+
+        .main .contenu .souligne-titre{
+          padding-top: 60px;
+          padding-bottom: 0px;
+          margin-bottom: 30px;
+          text-align: left;
+          font-family: var(--titleFont);
+          font-weight: lighter;
+          color: var(--mainColor2);
+          font-size: 2.5em;
+          line-height: 10%;
+        }
+        .main .contenu h3{
+            position: sticky;
+            z-index: 10;
+            top: 0px;
+            padding: 30px 0px 20px;
+
+            margin-left: 0vw;
+            margin-right: 0px;
+            text-align: left;
+
+
+            font-family: var(--titleFont);
+            font-weight: lighter;
+            font-size: 1.3em;
+            color: var(--mainColor2);
+            background-color: var(--backColor3);
+        }
+
+        h3::before {
+          counter-increment: cSection cTotal var(--Total); /* On incrémente le compteur de parties */
+          content: counter(cSection) " / " counter(cTotal); /* On affiche le compteur de parties + le nb total de parties*/
+          color: var(--mainColor3);
+          margin-left: -5.5vw;
+          margin-right: 6vw;
+          text-align: right;
+          }
+
+        .main .contenu h4{
+            font-family: var(--titleFont);
+            font-weight: lighter;
+            font-size: 1.2em;
+            color: var(--mainColor3);
+            line-height: 160%;
+            margin: 0;
+            padding-left: 2em;
+            padding-top: 30px;
+
+            position: relative;
+            /*top: -1em;*/
+            z-index: 3;
+        }
+
+        .main .contenu h4::before{
+          content: "— ";
+          margin-left: -1.3em;
+        }
+        .main .contenu h5{
+            font-family: var(--titleFont);
+            font-size: 0.95em;
+            font-style: italic;
+            color: var(--mainColor3);
+            margin-top: 0;
+
+            position: relative;
+            top: -1em;
+            z-index: 3;
+        }
+
+        .main .contenu h6{
+            font-family: var(--textFont);
+            font-size: 0.95em;
+            font-style: italic;
+            padding-left: 1em;
+            color: var(--mainColor3);
+            margin-top: 0;
+
+            position: relative;
+            z-index: 3;
+        }
+
+        .main .contenu p{
+            /*text-indent: 30px;*/
+            display: inline-block;
+            vertical-align: left;
+            font-family: var(--textFont);
+            font-weight: 300;
+            line-height: 150%;
+            color: var(--mainColor);
+            font-size: 1.2em;
+        }
+
+        .main .contenu q{
+            color: var(--mainColor3);
+        }
+
+        .main .contenu q::before{
+          content: open-quote;
+        }
+
+        .main .contenu q::after{
+          content: close-quote;
+        }
+
+        .main .contenu .paragraphe .abstract, .couverture2 .abstract {
+            /*text-indent: 30px;*/
+            display: inline-block;
+            vertical-align: left;
+            margin: 0 ;
+            padding-left: 2em;
+            padding-bottom: 2em;
+
+            font-family: var(--textFont);
+            font-weight: 100;
+            line-height: 150%;
+            color: var(--mainColor4);
+            font-size: 0.95em;
+        }
+
+        .main .contenu .paragraphe .abstract p{
+          color: var(--mainColor4);
+        }
+
+        .main .contenu .paragraphe b{
+            font-family: var(--textFont);
+            font-weight: bolder;
+            color: var(--mainColor);
+        }
+
+        .main .contenu .paragraphe .illustration{
+          display: block;
+          vertical-align: middle;
+          margin-bottom: 0px;
+          align-content: center;
+          text-align: center;
+        }
+
+        .main .contenu .paragraphe img.illustration, .main .contenu .paragraphe video.illustration{
+          max-width: 100%;
+          max-height: 60vh;
+          margin: auto;
+        }
+
+        /*lien vers les illustration en blanc*/
+        #ILL-belvedere{ content: url('../img/Ill-belvedere.png')}
+        #ILL-plot{ content: url('../img/ILL-plot.png')}
+        #BEL-numbers{ content: url('../img/BEL-numbers.gif')}
+        #loop{ content: url('../img/force3_2.mov')}
+        #ILL-map{ content: url('../img/ILL-map.png')}
+
+
+
+        .contenu .lien-ext-contenu{
+          /* text-decoration: none;
+            padding: .05em 0;
+            background-color: rgba(0, 0, 255, 0);
+            background-image: linear-gradient(180deg, var(--mainColor2), var(--mainColor2));
+            background-position: 0 1.4em;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;*/
+            text-decoration: none;
+            color: var(--mainColor);
+            border-bottom: dotted;
+            border-color: var(--suppColor2);
+            border-width: 2px;
+
+            transition: all .3s ease-in-out;
+        }
+        .lien-ext-contenu:visited{
+            color: var(--mainColor);
+        }
+        .lien-ext-contenu:hover{
+            /* background-position: 0em 1.5em;
+            color: var(--suppColor2); */
+            color: var(--suppColor);
+            text-decoration: none;
+            /*border-bottom: dotted;
+            border-color: var(--suppColor2);
+            border-width: 2px;*/
+        }
+
+        /* EXEMPLES ------------------------------- */
+        .main .contenu .exemples{
+            border-left: dotted 1px;
+            border-right: dotted 1px;
+            border-color: var(--mainColor4);
+            padding: 0px 20px;
+            margin-top: 4em;
+            margin-bottom: 2em;
+        }
+        .main .contenu .exemples h3{
+            font-family: var(--titleFont);
+            font-weight: bolder;
+            font-size: 1.1em;
+            color: var(--suppColor);
+            line-height: 160%;
+            margin: 0;
+            padding-top: 0;
+        }
+        .main .contenu .exemples p{
+            color: var(--mainColor);
+        }
+        .main .contenu .exemples p.question{
+            font-size: 1em;
+            color: var(--suppColor);
+            /* padding: 0px 10px; */
+            /* border-left: solid 3px;
+            border-color: var(--suppColor); */
+        }
+        .main .contenu .exemples p.reponse{
+            font-size: 1.1em;
+        }
+        .main .contenu .exemples .lien-ext{
+            color: var(--suppColor);
+            text-decoration: none;
+            transition: all 0.3s;
+            /* border-bottom: solid 2px;
+            border-color: var(--suppColor); */
+         }
+        .main .contenu .exemples .lien-ext::after{
+            content: "";
+            width: auto;
+            height: 2px;
+            display: inline-block;
+            background-color: var(--suppColor);
+        }
+        .main .contenu .exemples .lien-ext:hover{
+            color: var(--suppColor);
+            text-decoration: underline;
+        }
+        .main .contenu .exemples .lien-ext:active{
+            font-size: 97%;
+        }
+
+        /* GLOSSAIRE ----------------------------- */
+
+        .glossary{
+            cursor: help;
+        }
+        .glossary::after{
+            content: '*';
+            color: var(--suppColor);
+            font-weight: bolder;
+        }
+        .glossary[data-title]:hover::before{
+            content: attr(data-title);
+            z-index: 30;
+            display: inline-block;
+            position: absolute;
+            top: 5px;
+            right: -10px;
+
+            margin-top: 1.5em;
+            padding:8px;
+            max-height: 40vh;
+            max-width: 40vw;
+            width: max-content;
+
+            border-radius: 2px;
+            border-style: dotted;
+            border-width: 1px;
+            background: var(--backColor2);
+            color: var(--mainColor);
+            font-size: 0.7em;
+            line-height: 110%;
+            font-family: var(--textFont);
+            font-weight: bolder;
+            white-space: normal;
+            overflow: scroll;
+        }
+        [data-title]{
+            position: relative;
+        }
+
+        /* square pour les images----------------------------- */
+        .square .figblock{
+            cursor: pointer;
+        }
+        .square::after{
+            content: '■';
+            color: var(--suppColor);
+            font-weight: bolder;
+        }
+
+        .square .figblock{
+          opacity: 0;
+          position: absolute;
+          bottom: 10px;
+          right: -10px;
+          display: none;
+          transition: opacity .5s;
+        }
+
+        .square:hover .figblock{
+          z-index: 305;
+          display: inline-block;
+          position: fixed;
+          margin: 0;
+          width: max-content;
+          height: max-content;
+
+          top: 50%;
+          left: 50%;
+          transform: translateX(-50%) translateY(-50%);
+          text-align: left;
+          flex-direction: column;
+
+          padding: 1.5em;
+
+            border-radius: 2px;
+            border-width: 2px;
+            border-style: dotted;
+            /*border-color: white;
+            border-width:  0 0 1px 0;
+            border-image-source: url('../img/dotted-border.png');
+            border-image-slice: 33% 33%;
+            border-image-repeat: round;*/
+
+            background: var(--backColor3);
+            color: var(--mainColor);
+            font-size: 0.7em;
+            font-family: var(--textFont);
+            font-weight: bolder;
+            line-height: 110%;
+            white-space: normal;
+
+
+          opacity: 1;
+        }
+
+        .square:hover .figblock .fig{
+          display: flex;
+          max-width: 70vw;
+          max-height: 70vh;
+          margin-bottom: 1.5em;
+        }
+
+        .square:hover .figblock .fig-legende{
+          display: inline-flex;
+          max-width: 70vh;
+        }
+
+/* 3 - CSS TIM + Martin modifié - Notes de BP ---------------------------------------------------------------------------------------- */
+
+        /* Les suggestions */
+        .sgstn-second{
+            display: none;
+        }
+
+        /* Les notes de bas de pages en bas */
+        .main .contenu .active .nbp-main:after{
+            counter-increment: cIntro;
+            content: "\0000A0" counter(cIntro);
+            vertical-align: 0.4em;
+
+            color: var(--suppColor);
+            font-family: var(--titleFont);
+            font-weight: bolder;
+            font-size: 0.6em;
+
+        }
+        .nbp-second{
+            display: inline-block;
+            position: fixed;
+            right: 7vw;
+            bottom: 0px;
+            width:50vw;
+
+            font-family: var(--titleFont);
+            font-size: 0.8em;
+            color: var(--mainColor);
+            line-height: 140%;
+
+            border-top: dotted 1px;
+            border-collapse: separate;
+            border-color: var(--mainColor);
+
+            background-color: var(--backColor3);
+            padding-left: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin: 0em 0em;
+        }
+        .nbp-second.nbp-active{
+            z-index: 10;
+        }
+        .lien-ext{
+            display: inline;
+            cursor: pointer;
+            color: var(--suppColor2);
+            text-decoration: none;
+        }
+        .lien-ext:hover{
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+
+        /* .nbp-second::first-letter{
+            color: var(--suppColor2);
+            font-family: var(--titleFont);
+        } */
+
+        .chiffreNbp{
+            color: var(--suppColor);
+            font-family: var(--titleFont);
+        }
+        .nbp-second.nbp-inactive{
+            /* display: none; */
+            /* visibility: hidden; */
+            opacity: 0;
+            transform: translateY(20px);
+
+            transition: opacity 0.5s 0.1s ease-in-out,
+                        transform 0.5s 0.1s ease-in-out;
+        }
+        .nbp-second.nbp-active{
+            /* display: inline-block; */
+            /* visibility: visible; */
+            opacity: 100;
+            transform: translateY(0px);
+
+            transition: opacity 0.5s 0.1s ease-in-out,
+                        transform 0.5s 0.1s ease-in-out;
+        }
+
+
+
+        /* FOOTER ------------------- */
+        .main .contenu .bas-page{
+            padding-top: 20px;
+            text-align: left;
+        }
+        .trait-ndbp-sgstn{
+            background: var(--mainColor3);
+            height: 1px;
+            width: 15%;
+            margin-top: 3em;
+            margin-bottom: 2em;
+        }
+        .main .contenu .bas-page ol {
+            width: 100%;
+            list-style: none;
+            counter-reset: li;
+            margin: 10px 0 10px 10px;
+            padding: 0;
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .main .contenu .bas-page ol li{
+            color: var(--mainColor);
+            font-family: var(--textFont);
+            font-weight: 300;
+            font-size: 1em;
+            margin-bottom: 0.5em;
+        }
+        .main .contenu .bas-page ol li::before { /* STYLE DES NUMEROS DE LA LISTE*/
+            content: counter(li);
+            counter-increment: li;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1.5em;
+            margin-right: 0.6em;
+            text-align: right;
+            direction: rtl;
+
+            color: var(--suppColor);
+            font-family: var(--titleFont);
+            font-size: 1em;
+        }
+
+        ul.bibliographie{
+            list-style : none;
+            margin-left: 0;
+            padding-left: 2em;
+        }
+
+        ul.bibliographie li{
+            border-left: solid;
+            border-color: var(--suppColor2);
+            border-width: 0.3em;
+            margin-top: 1em ;
+            padding-left: 0.5em;
+            margin-left: 0;
+
+            font-family: var(--textFont);
+            font-weight: normal;
+            line-height: 150%;
+            color: var(--mainColor);
+            font-size: 1.1em;
+        }
+
+        /* FICHE REFERENCE----------------------------------------- */
+
+        .fiche{
+            margin-top: 2em;
+            margin-bottom: 3em;
+
+            margin-right: 10vw;
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+        }
+        .ref-fiche{
+            height: 50vh;
+            width: 50vw;
+
+            overflow: auto;
+            display: flex;
+            flex-direction: row;
+
+            padding-top: 1em;
+            padding-bottom: 1em;
+        }
+        .fiche img{
+            padding-right: 10px;
+        }
+        .fiche .bouton-texte-fiche{
+            color: var(--suppColor);
+            cursor: pointer;
+            margin-top: 10px;
+            font-family: var(--textFont);
+            font-size: 1em;
+        }
+        .fiche .bouton-texte-fiche:hover{
+            color: var(--suppColor2);
+        }
+        .fiche p.texte-fiche.apparition-texte-fiche{
+            display: block;
+        }
+        .fiche p.texte-fiche{
+            column-width: 80em;
+            column-gap: 4em;
+            padding-left: 30px;
+
+            font-size: 1em;
+            line-height: 110%;
+            height: 105%;
+
+            display: none;
+        }
+
+        h6{
+            font-family: var(--textFont);
+            font-size: 0.9em;
+            color: var(--mainColor);
+            font-weight: lighter;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        .main nav .nav-btn{
+            display: none;
+        }
+
+
+/*  MEDIA QUERY  -------------------------------------------------------------------------------------*/
+
+/* CARTO ------------------------------------------ */
+@media screen and (max-width: 700px), screen and (orientation:portrait){
+  .white-popup .fanion-container{
+    width:100%;
+    padding-bottom:100%;
+    vertical-align: middle;
+    /*margin: auto 0;*/
+  }
+
+  #topleft{
+    position: absolute;
+    top: 5vh;
+  }
+  #topright{
+    position: absolute;
+    top: 5vh;
+    right: 5%;
+    text-align: right;
+  }
+ #bottomleft{
+    position: absolute;
+    top: 90vh;
+
+  }
+  #bottomright{
+    position: absolute;
+    top:90vh;
+    right: 5%;
+    text-align: right;
+}
+
+.square:hover .figblock .fig-legende{
+  display: inline-flex;
+  max-width: 70vw;
+}
+
+.couverture h1.main-title{
+  margin-left:0;
+  text-align: center;
+
+}
+.couverture h2.subtitle{
+  margin-left:0;
+  margin-right: 0;
+  margin-top: 0.5em;
+  text-align: center;
+  width: 100vw;
+}
+
+#background-video {
+  display: none;
+}
+
+
+
+@media screen and (max-width: 1000px){
+
+
+    /* CONTENU ------------------------------------------ */
+    .main{
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+        /*display:flex;
+        align-items: center;
+        justify-content: space-around;
+        font-size: 1.2em;*/
+    }
+
+    .nbp-second{
+        font-size: 1.1em;
+    }
+
+    /* MENU NAV ----------- ---------------------------------*/
+    .main nav{
+      width : 80vw;
+      padding: 6vw;
+      left: 5vw;
+      margin: 0;
+      display: inline-block;
+      position: static;
+    }
+     .main nav.menu{
+       position: relative !important;
+
+     }
+
+     .main nav ul.menu{
+       margin: 0;
+       display: inline-block;
+       position: static;
+       justify-content: space-around;
+     }
+
+     .main nav .menu li a{
+       width : 70vw;
+         font-size: 1.3em;
+     }
+     .main nav .menu .active a{
+         font-size: 1.3em;
+     }
+     .main nav .menu li .sous-menu a{
+         font-size: 1em;
+     }
+
+     .main nav .nav-btn{
+         height: 20vh;
+         width: 2vh;
+         top: 40vh;
+         left: 0;
+         z-index: 21;
+         margin: 1vw;
+         background-color: var(--suppColor2);
+
+         background-color: var(--backColor);
+         box-shadow: none;
+         border: none;
+         transition: all 0.3s ease-in-out;
+         opacity: 0;
+     }
+
+
+
+    /* TEXTE CENTRAL -------------------------------------------- */
+    .main .contenu {
+        width : 80vw;
+        padding: 6vw;
+        left: 5vw;
+        margin: 0;
+    }
+
+    /* all images slideshow */
+    .main .contenu .images .slideshow-container{
+      width: 78vw;
+      position: relative;
+    }
+
+    .main .contenu .images .slideshow-container .mySlides{
+      max-width: 78vw;
+      max-height: 78vw;
+
+    }
+
+    .main .contenu .images .slideshow-container .mySlides video, .main .contenu .images .slideshow-container .mySlides img{
+      max-width: 100%;
+      height: max-content;
+    }
+
+
+     /*compteur*/
+     .main .contenu .legende-compt{
+       font-size: 1.5em;
+     }
+     .main .contenu .total{
+       font-size: 1.5em;
+     }
+
+    /*content */
+    .main .contenu h1{
+        /* padding-top: 10px; */
+        font-size: 4em;
+        line-height: 5rem;
+    }
+    .main .contenu .souligne-titre{
+        display: block;
+        position: relative;
+        bottom: 50px;
+        background-color: var(--suppColor);
+        padding: 4px;
+        width : 15%
+    }
+    .main .contenu h2{
+        position: relative;
+        top: 0vh;
+        font-size: 3em;
+        padding: 40px 0px;
+    }
+
+    .main .contenu h3{
+      font-size: 1.5em;
+      margin-left: 2vw;
+
+    }
+
+    .main .contenu h3::before{
+      margin-left: -7vw;
+      padding-right: 0.2vw;
+    }
+
+    .main .contenu .paragraphe p{
+        font-size: 1.5em;
+        line-height: 2.3em;
+        margin: 0;
+    }
+
+    .main .contenu .paragraphe .abstract{
+        font-size: 1.5em;
+        line-height: 2.3em;
+        margin: 0;
+    }
+
+    /* Notes de bas de page ------------------------ -------------*/
+    .nbp-second{
+      position: fixed;
+      left: 5vw;
+      bottom: 0px;
+      width:85vw;
+        display: inline-block;
+        z-index: 10;
+        padding: 2vw;
+      }
+        /*top: auto;
+        bottom: 0;
+        left: 0;
+        width: 44vw;
+        height: auto;
+        padding: 40px;
+        margin: 0;
+
+        text-align: left;
+        overflow-wrap: normal;
+        font-size: 2em;
+        line-height: 3em;
+
+        background-color: var(--backColor2);
+        color: var(--mainColor);
+        border-top: dotted 1px;
+        border-left: none;
+        border-color: var(--suppColor);
+    }
+
+    .nbp-second.nbp-inactive{
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all .5s;
+        }*/
+
+    .nbp-second.nbp-active{
+        visibility: visible;
+        opacity: 100;
+        transform: translateY(0px);
+        transition: all 0.6s ease-in-out;
+    }
+
+
+    /* Footer ------------------------------------------------------- */
+    .main .contenu .bas-page .trait-bp{
+        border-top: dotted 1px;
+        border-color: var(--suppColor);
+    }
+    .main .contenu .bas-page ol li{
+        font-size: 1em;
+    }
+    .main .contenu .bas-page ol li::before{
+        font-size: 0.9em;
+    }
+
+}
